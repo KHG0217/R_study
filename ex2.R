@@ -106,8 +106,9 @@ intersect(a,b)# 교지합 a와 b가 함께 가지고 있는 것
 # - 처리함수 : apply()
 
 a <- 1:8
-dim(a) # 차원
+
 dim(a) <- c(2,4) #2열 4행을 만듬 열부터 채움
+dim(a) #2열 4행행
 a
 class(a) #  "matrix" "array" 
 
@@ -259,7 +260,9 @@ df$irum
 df$nai
 df$nai[1]
 df['addr'] = c('서울','인천','수원') #addr이라는 칼럼으로 values 추가
+df['imsi'] = ifelse(df$nai >= 30, "good", "nice") # TRUE면 good, FALSE면 nice
 df
+
 df[, 2] #2열만 보기
 df[, 1]
 df[1,] # 1행만 보기
