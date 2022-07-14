@@ -3,9 +3,11 @@
 # 두 변수는 서로 독립적인 관계로부터 서로 상관된 관계일 수 있으며 
 # 이때 두 변수 간의 관계의 강도를 상관관계(Correlation)라 한다.
 
+
 # 공분산(共分散, covariance)은 2개의 확률변수의 선형 관계를 나타내는 값이다.
 # 공식 = 두개의 변수 전체편차의합을 구하고 각 변수의 합을 전체갯수로 나눔
 # 공분산의 예
+
 
 x <- 1:5
 y <- 5:1
@@ -29,7 +31,7 @@ cov(1:5, 5:1)# 상관관계: -2.5 / 음의 관계가 있음을 알 수 있다. �
 cov(1:5, c(50,40,30,20,10)) # -25 
 cov(1:5, c(500,400,300,200,100)) # -250 단위가 다르기 때문에 표준화
 
-# 공분산 값을 표준화 할 수있다. -1 ~ 0 ~ 1 사이의 값으로 표현하게 됨
+# 공분산 값을 표준화 할 수있다. -1 ~ 0 ~ 1 사이의 값으로 표현하게 됨 = 상관계수
 
 # 상관계수 = r ***중요 <- 공분산을 표준화 한것
 
@@ -85,12 +87,12 @@ r_xy
 cor(hf_man$father, hf_man$height)
 
 #아들의 키가 아버지의 영향이 있으므로 y 에 아들키 height
-#    x ~ y  영향을 주는변수: 독립변수 y / 영향을 받는 변수 : 종속변수 x
-plot(height ~ father, data=hf_man, xlab='아버지 키', ylab='아들키키')
+#    x ~ y  영향을 주는변수: 독립변수 x / 영향을 받는 변수 : 종속변수 y
+plot(height ~ father, data=hf_man, xlab='아버지 키', ylab='아들 키')
 
 # 평균 추세선 =회귀선 = y= wx +b/ w(기울기) x(x값) b(y절편)
 # 최소 제곱법 = 절편과 기울기 구하기
-abline(lm(height ~ father, data=hf_man), col='red', lwd=2)
+abline(lm(height ~ father, data=hf_man), col='red', lwd=4)
 
 # 상관계수 결정
 cor.test(hf_man$father, hf_man$height, method = 'pearson')

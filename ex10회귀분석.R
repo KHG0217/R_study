@@ -1,5 +1,21 @@
-# 회귀분석 모델을 작성 
-# 적정한 추세선을 만들기 위한 수식을 완성을 해줌. :) y = f(x)/ t =wx + b w:기울기,y:절편
+# 회귀분석 모델을 작성  - 머신런닝
+# 적절한 추세선을 만들기 위한 수식을 완성을 해줌. :) y = f(x)/ y =wx + b w:기울기,y:절편
+# 추세선을 긋기 위해선 상관관계와 인과관계가 모두 성립해야한다.
+
+# 상관관계 = 서로 두 변수가 관련이 있는것 / 인과관계 = 원인과 결과의 관계
+# *모기가 늘어나서 아이스크림 판매량이 늘었다 (겨울엔 모기가 없고,아이스크림을 안먹는것)
+#상관관계는 있지만 인과관계는 없다.
+
+# 확률변수 = 확률현상에 기인해 결과값이 확률적으로 정해지는 변수 
+
+# 잔차 : 편차를 데이터에선 잔차라고 부름
+# 잔차가 최소되는 = cost가 최소가되는 = 비용이 최소가 되는 = loss가 최소가되는 = 추세선
+# cost function = loss function
+
+# 잔차가 최소가 되는 추세선을 그어주는것임
+# 긋기 위해선 y절편과 기울기를 이용해서 긋는데 =상관계수
+# y절편과 기울기는 최소자승법을 이용하여 구할 수있다
+
 
 # 미국 여성 데이터 (height, weight)를 사용해 회귀모델을 작성
 # 미지의 경험하지 않은 height를 입력하여 몸무게를 예측하기.
@@ -11,20 +27,24 @@ dim(women)
 
 #상관계수 이용 (공분산을 표준화한것)
 cor(women$height, women$weight) # r:0.9954948
-cor.test(women$height, women$weight) # 상관관계가 의미가 있는지 먼저 확인 p -value
+cor.test(women$height, women$weight) # 상관관계가 의미가 있는지 먼저 확인 p -value <0.05
 plot(weight ~ height, data=women)
 
-# 영향을 주는 변수(독립변수 = height) / 영향을 받는 변수 (종속변수 = weight)
+# 영향을 주는 변수(독립변수 = height) x / 영향을 받는 변수 (종속변수 = weight) y
 # 인과관계는 있는지 확인 ? 개발자 판단 height가 weight에 영향을 주는것으로 판단.
 
 #조건이 만족되었으므로 회귀 분석 모델을 작성을 한다.
 # y = wx + b : 이 수식 얻기
+# w = 기울기 x:들어갈 값 (여기선 height) b: y절편
 
 #최소자승법 함수 사용하기
 mfit <- lm(formula = weight ~ height, data=women) # 전통적 기계학습 알고리즘 모델을 이용하고 있다.
 #  slope(기울기):3.45 / bias(절편): -87.52 y_hat(예측값) =3.45 * x + -87.52 x:예측할 값(여기선 weight)
 mfit # <-model
 abline(mfit, col='blue')
+cat('예측값:',round(fitted(mfit))) # model이 예측한값 ,예측형 데이터가 연속형 데이터터
+cat('실제값:',women$weight)
+
 head(women)
 
 pred1 <-3.45 * 58 + -87.52 # 실제값 115 예측결과값 :112.58
@@ -39,6 +59,8 @@ cat('예측 결과: ', pred2)
 new_x <- 77
 new_pred <- 3.45 * new_x + -87.52
 cat('새예측 결과: ', new_pred)
+
+residuals(mfit) # 잔차들
 
 summary(mfit) # 모델에 대한 요약 통계량 
 #    최소  25~50   중간     50~75    최대

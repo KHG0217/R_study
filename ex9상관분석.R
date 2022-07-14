@@ -14,7 +14,7 @@ cov(data)
 
 cor(data$친밀도, data$적절성) # 0.4992086 약한 상관관계
 cor(data, method = 'pearson')
-
+abline(lm(친밀도 ~ 적절성, data=data), col='red', lwd=2)
 symnum(cor(data, method = 'pearson')) # 상관계수를 시각화
 
 install.packages("corrgram")
