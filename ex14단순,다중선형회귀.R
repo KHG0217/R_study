@@ -7,7 +7,7 @@ str(mtcars)
 # 임의의 마력수를 입력하여 연비를 예측하고 싶은 경우 (mpg,hp)
 # hp:독립변수, mpg:종속변수 
 
-cor(mtcars$hp, mtcars$mpg) # -0.7761684 반비례의 관계이다.
+cor(mtcars$hp, mtcars$mpg) # -0.7761684 반비례의 관계이다. 공분산
 plot(mpg ~ hp, data = mtcars, xlab='hp', ylab='mpg')
 
 # 인과관계가 있다고 판단함. 회귀분석을 실행할 수 있다.

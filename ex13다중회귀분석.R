@@ -101,8 +101,8 @@ fwd_model1 <- step(min_model1, direction = 'forward',
 # 기회를 갖지 못하는 변수가 발생할 수 있다.
 
 # all subset regression : 모든 조합에 대한 검증을 함
-install.packages("leaps")
-library(leaps)
+# install.packages("leaps")
+# library(leaps)
 
 m <- leaps::regsubsets(Murder ~ Population + Illiteracy + Frost + Income, data=states, nbest=4)
 summary(m)$bic   # BIC 값 : AIC 와 마찬가지로 모델의 확률분포의 차이를 알려준다. 

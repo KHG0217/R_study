@@ -1,4 +1,4 @@
-# Logistic Regression : 분류 모델 (시험범위 x )
+# Logistic Regression : 분류 모델
 # 독립변수 : 연속형, 종속변수 : 범주형
 # 로직 변환을 한 후,시그모이드 함수를 사용해서 결과를 0 or 1로 출력한다.
 
@@ -17,8 +17,8 @@ summary(mydata)
 table(mydata$pass, mydata$rank)
 xtabs(formula = ~pass + rank, data = mydata)
 
-# 데이터 분리 : train/ test 보통: 7/3 = 모델의 과적합(overfitting) 방지
-set.seed(1) # 난수발생
+# 데이터 분리 : train/ test 보통: 7:3 = 모델의 과적합(overfitting) 방지
+set.seed(1) # 매번 다르게 나오는것을 방지
 idx <- sample(1:nrow(mydata), nrow(mydata) * 0.7) # 뺴내l고 끝: 비복원 추출
 idx # 400개중에 랜덤하게 70%를 뽑은것 (인덱스만)
 length(idx)
